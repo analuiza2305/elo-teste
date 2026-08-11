@@ -1,0 +1,216 @@
+/* =========================================
+   ESTILOS GLOBAIS
+========================================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-color);
+  animation: fadePage 0.6s ease-in-out;
+}
+
+@keyframes fadePage {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.artigos-wrapper-principal {
+  max-width: 1300px;
+  margin: 30px auto 80px auto;
+  padding: 0 20px;
+}
+
+/* =========================================
+   HERO (CABEÇALHO) 
+========================================= */
+.artigos-hero-simples {
+  background: linear-gradient(135deg, var(--muted-bg) 0%, var(--muted-bg) 50%, var(--muted-bg) 100%);
+  border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  animation: fadeSlideDown 0.8s ease-out;
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.artigos-hero-simples h1 {
+  margin: 0 0 12px 0;
+  color: var(--primary-color-dark);
+  font-size: 2rem;
+}
+
+.artigos-hero-simples p {
+  margin: 0;
+  color: var(--text-color-light);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* =========================================
+   FILTROS DE CATEGORIA
+========================================= */
+.categorias {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  animation: fadeSlideDown 0.8s ease-out;
+}
+
+.categoria {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color-light);
+  padding: 10px 24px;
+  border-radius: 12px; /* Combinando com o arredondamento dos botões */
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Nunito', sans-serif;
+}
+
+.categoria:hover {
+  background-color: var(--hover-bg);
+  transform: translateY(-2px);
+}
+
+.categoria.ativa {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+
+/* =========================================
+   GRADE DOS ARTIGOS (CARDS)
+========================================= */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+  padding: 10px 0;
+  animation: fadeSlideDown 0.6s ease-out;
+}
+
+.article-card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s ease forwards;
+  position: relative; 
+  padding-bottom: 70px; /* Dá espaço para o botão absoluto embaixo */
+  text-decoration: none;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.article-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.article-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.article-card:hover .article-img {
+  transform: scale(1.05);
+}
+
+.article-body {
+  padding: 18px;
+}
+
+.article-body h3 {
+  margin: 0 0 8px 0;
+  color: var(--primary-color-darker);
+  font-size: 1.2rem;
+}
+
+.article-body p {
+  margin: 0 0 14px 0;
+  color: var(--text-color2);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Categorias com as cores originais da sua marca */
+.categoria-tag {
+  font-size: 13px;
+  color: var(--muted-accent);
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cat-legislativos .categoria-tag { color: #b71c1c; }
+.cat-educacionais .categoria-tag { color: #1a3d8f; }
+.cat-dicas .categoria-tag { color: #1b5e4a; }
+.cat-posts .categoria-tag { color: #6a4c93; }
+
+/* =========================================
+   BOTÃO DO CARD
+========================================= */
+.btn-ler {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: absolute;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  bottom: 20px;
+  left: 18px; 
+}
+
+.btn-ler:hover {
+  background: var(--primary-color-dark);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  .article-img {
+    height: 160px;
+  }
+  .artigos-hero-simples {
+    padding: 28px 18px;
+  }
+  .artigos-hero-simples h1 {
+    font-size: 1.6rem;
+  }
+}

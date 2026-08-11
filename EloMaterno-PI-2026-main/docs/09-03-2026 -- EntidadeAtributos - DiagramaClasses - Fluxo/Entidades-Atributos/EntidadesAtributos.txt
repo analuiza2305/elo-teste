@@ -1,0 +1,120 @@
+Todos que estão com *, é uma dúvida
+
+mãe: 
+
+idMae
+NomeMae
+TelefoneMae
+EmailMae
+CidadeMae
+FilhosMae
+EmpregoMae (só faz sentido se tivesse algo voltado para mercado de trabalho)*
+SenhaMae
+IdForum
+IdConsulta
+IdCalendario
+IdChat
+IdEvento
+IdArtigo
+
+empresa parceira:
+idEmpresa / CNPJ (chave primária)*
+NomeFantasia
+ContatoEmpresa *ficamos em dúvida se usamos "contato empresa" onde ela coloca o e-mail ou telefone ou deixar dois campos (como já está)
+EmailEmpresa 
+AreaAtuacao
+SenhaEmpresa
+IdForum
+IdArtigos
+IdCalendario
+idEventos
+
+Psicólogo:
+idPsicologo / CRP (chave primária)*
+NomePsicologo
+EmailPsicologo
+AreaPsicologo
+EspecializacoesPsicologo *(mesmo com o area de atuacao, é necessario ter esse?)
+SenhaPsicologo
+IdCalendario
+IdArtigos
+IdConsultas
+HorariosDisponiveis
+IdForum
+IdPaciente
+IdChat
+	
+Advogado:
+idAdvogado / OAB (chave primária)*
+NomeAdvogado
+EmailAdvogado
+AreaAdvogado
+EspecializacoesAdvogado
+SenhaAdvogado
+IdCalendario
+IdArtigos
+IdConsultas
+HorariosDisponiveis
+IdForum
+IdPaciente
+IdChat
+
+Consultas:
+IdConsultas
+HorariosDisponiveis
+datasDisponiveis
+observações
+Status
+IdMae
+IdProfissional *(teria que separar as tabelas? ex: consultaPsi - consultaAdv; ou deixar as duas fk resolve?)
+IdAgenda
+
+
+Calendário:
+IdCalendario
+IdEventos
+IdMae
+IdConsultas
+
+Forum:
+IdForum
+Postagem * (neste caso, poderia ser criado uma tabela só para postagem?)
+Titulo
+Conteudo
+IdMae
+IdAdvogado
+IdPsicologo
+IdEmpresa
+
+Eventos:
+IdEvento
+IdEmpresa
+Titulo
+Descricao
+DataEvento
+Local
+Imagem
+IdMae
+
+Chat:
+IdChat
+IdPsicologo
+IdMae
+IdAdvogado
+mensagem *(entra como uma tabela tbm?)
+
+Artigos:
+IdArtigos
+IdEmpresa
+Titulo
+Descricao
+Resumo
+Imagem
+Link
+Categoria
+
+Pacientes:
+IdMae (pk e fk)
+UltimaConsulta
+IdChat 
+

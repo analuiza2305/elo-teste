@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Políticas - EloMaterno</title>
+    <!-- Importa as Fontes e Ícones necessários -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/politica-style.css">
+    <link rel="icon" type="image/svg+xml" href="iconelogo.svg">
+</head>
+<body>
+    <!-- ==========================================
+         1. FILTROS DE DALTONISMO E MENU FLUTUANTE
+    =========================================== -->
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+        <defs>
+            <filter id="protanopia"><feColorMatrix type="matrix" values="0.567 0.433 0 0 0 0.558 0.442 0 0 0 0 0.242 0.758 0 0 0 0 0 1 0" /></filter>
+            <filter id="deuteranopia"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0 0.700 0.300 0 0 0 0 0.300 0.700 0 0 0 0 0 1 0" /></filter>
+            <filter id="tritanopia"><feColorMatrix type="matrix" values="0.950 0.050 0 0 0 0 0.433 0.567 0 0 0 0.475 0.525 0 0 0 0 0 1 0" /></filter>
+            <filter id="Acromatopsia"><feColorMatrix type="matrix" values="0.299 0.587 0.114 0 0 0.299 0.587 0.114 0 0 0.299 0.587 0.114 0 0 0 0 0 1 0" /></filter>
+        </defs>
+    </svg>
+
+    <div class="accessibility-floating">
+        <button class="btn-icon" id="accessibility-toggle" aria-label="Opções de acessibilidade">
+            <i class="fa fa-universal-access" aria-hidden="true"></i>
+        </button>
+        <ul id="accessibility-menu" class="hidden">
+            <li id="increase-font"><i class="fa fa-plus-circle" aria-hidden="true"></i> Aumentar Fonte</li>
+            <li id="decrease-font"><i class="fa fa-minus-circle" aria-hidden="true"></i> Diminuir Fonte</li>
+            <li id="colorblind-filter"><i class="fa fa-low-vision" aria-hidden="true"></i> Filtros Daltonismo</li>
+            <li id="screen-reader"><i class="fa fa-assistive-listening-systems" aria-hidden="true"></i> Leitura em Voz</li>
+            <li id="reading-mask"><i class="fa fa-highlighter" aria-hidden="true"></i> Máscara de leitura</li>
+            <li id="bold-text"><i class="fa fa-bold" aria-hidden="true"></i> Letras destacadas</li>
+            <li id="high-contrast"><i class="fa fa-adjust" aria-hidden="true"></i> Alto contraste</li>
+            <li id="increase-line"><i class="fa fa-arrows-alt-v" aria-hidden="true"></i> Aumentar Linhas</li>
+            <li id="decrease-line"><i class="fa fa-compress-arrows-alt" aria-hidden="true"></i> Diminuir Linhas</li>
+            <li id="reset-accessibility"><i class="fa fa-undo" aria-hidden="true"></i> Redefinir</li>
+        </ul>
+    </div>
+
+    <!-- ==========================================
+         2. O SEU TEXTO PRINCIPAL INTACTO
+    =========================================== -->
+    <main>
+        <div class="policy-container">
+            <div class="policy-header">
+                <!-- Certifique-se de que o caminho da imagem do botão voltar está correto -->
+                <a href="index.html" class="back-button" aria-label="Voltar para a página inicial">
+                     <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <h1 class="policy-title">Politicas de Privacidade </h1> <!-- Mude o Título conforme a página -->
+            </div>
+            
+            <div class="policy-content">
+                <p><strong>Última atualização:</strong> 29 de outubro de 2025</p>
+
+                <h5>1. Apresentação e Compromisso</h5>
+                <p>Se você nos procurou, deve saber que a atividade do EloMaterno consiste em criar uma ponte segura entre Mães Solo e nossa rede de Parceiros (Empresas, Psicólogos e Advogados). Este processo pode envolver o tratamento de dados pessoais, inclusive dados sensíveis. Ao realizar sua inscrição, você está concordando de forma <strong>LIVRE, EXPRESSA e INFORMADA</strong> com o uso de suas informações.</p>
+                <p>Se tiver dúvidas, entre em contato: <strong>eloomaterno@gmail.com</strong></p>
+
+                <h5>2. Definições Importantes (LGPD)</h5>
+                <ul>
+                    <li><strong>Dados Pessoais:</strong> Qualquer informação que identifique você (nome, e-mail, etc.).</li>
+                    <li><strong>Dados Pessoais Sensíveis:</strong> Dados que exigem cuidado maior (situação familiar, necessidades emocionais).</li>
+                    <li><strong>Tratamento:</strong> Qualquer operação com seus dados (coleta, uso, etc.).</li>
+                    <li><strong>Titular:</strong> É você, a pessoa a quem os dados se referem.</li>
+                </ul>
+
+                <h5>3. Quais Dados Tratamos e Como os Coletamos?</h5>
+                <p>Coletamos apenas os dados necessários dos formulários de cadastro:</p>
+                <ul>
+                    <li><strong>Mãe Solo:</strong> Nome, e-mail, telefone, senha.</li>
+                    <li><strong>Parceiros (Empresas):</strong> CNPJ, e-mail, área de atuação.</li>
+                    <li><strong>Parceiros (Advogados):</strong> Nome, OAB, área de atuação.</li>
+                    <li><strong>Parceiros (Psicólogos):</strong> Nome, e-mail, CRP.</li>
+                    <li><strong>Cookies:</strong> Pequenos arquivos para manter o login. (Veja nossa Política de Cookies).</li>
+                </ul>
+
+                <h5>4. Para Quais Finalidades Usamos Seus Dados?</h5>
+                <ul>
+                    <li><strong>Prestar Nossos Serviços:</strong> Permitir seu cadastro, criar seu perfil e conectá-la com Parceiros.</li>
+                    <li><strong>Segurança:</strong> Verificar a identidade dos Parceiros através de seus registros profissionais (CRP, OAB, CNPJ).</li>
+                    <li><strong>Comunicação:</strong> Enviar comunicações essenciais sobre sua conta e agendamentos.</li>
+                </ul>
+
+                <h5>5. Com Quem Compartilhamos Seus Dados?</h5>
+                <p>A sua privacidade é a base da nossa confiança.</p>
+                <ul>
+                    <li><strong>Entre Mãe e Parceiro:</strong> Seus dados de perfil e contato (nome, e-mail) somente serão compartilhados com um Parceiro quando você iniciar uma interação (ex: solicitar um contato).</li>
+                    <li><strong>Provedores de Tecnologia:</strong> Serviços de hospedagem em nuvem (servidores).</li>
+                    <li><strong>Obrigação Legal:</strong> Em caso de ordem judicial.</li>
+                    <li><strong>Intermediação e Sigilo Profissional:</strong> O EloMaterno atua como intermediário. <strong>NÃO TEMOS ACESSO</strong> ao conteúdo das sessões de terapia ou consultorias. O sigilo profissional é uma obrigação <strong>EXCLUSIVA</strong> do Profissional Parceiro.</li>
+                </ul>
+                <p><strong>Nós nunca venderemos seus dados pessoais para terceiros.</strong></p>
+
+                <h5>6. Seus Direitos como Titular dos Dados</h5>
+                <p>A LGPD garante a você total controle sobre suas informações. Você tem o direito de: Confirmar, Acessar, Corrigir, Anonimizar, Bloquear ou Eliminar seus dados, e Revogar seu consentimento.</p>
+
+                <h5>7. Segurança e Retenção dos Dados</h5>
+                <p>Adotamos as melhores práticas de segurança, incluindo criptografia, para proteger seus dados. Manteremos seus dados armazenados apenas enquanto você tiver uma conta ativa conosco.</p>
+                
+                <h5>8. Alterações Nesta Política</h5>
+                <p>Esta Política poderá ser atualizada. Sempre que houver uma mudança significativa, você será notificado(a) por e-mail ou por um aviso na plataforma.</p>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================
+         3. MÁSCARA E VLIBRAS (NECESSÁRIOS PARA ACESSIBILIDADE)
+    =========================================== -->
+    <div id="reading-mask-overlay">
+        <div class="highlight-window"></div>
+    </div>  
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+    <!-- Para que os botões de acessibilidade funcionem, este script precisa estar conectado! -->
+    <script src="js/index.js"></script>
+</body>
+</html>

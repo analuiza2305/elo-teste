@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EloMaterno - Cadastro</title>
+  <link rel="stylesheet" href="./css/cad.css">
+  <link rel="stylesheet" href="./css/globals.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="img/iconelogo.svg">
+  <link rel="alternate icon" type="image/png" href="img/iconelogo.png">
+</head>
+
+<body>
+
+  <div class="cadastro-container">
+    <div class="cadastro-box">
+
+      <a href="formPerfil.html">
+        <img src="./img/logo_icon.png" alt="Logo mãe" class="logo">
+      </a>
+
+      <h2>Cadastre-se como Parceiro ou Profissional:</h2>
+      <p class="subtexto">Junte-se a nós para transformar vidas</p>
+
+      <form action="#" method="post" class="cadastro-form">
+        <div class="input-group">
+           <i class="fa fa-user icon"></i>
+          <input type="text" placeholder="Nome completo ou Nome fantasia:" name="nomeadv">
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-envelope icon"></i>
+          <input type="email" placeholder="Email:" name="emailadv">
+        </div>
+
+
+       <div class="campo-documento">
+        <div class="input-group dropdown-container">
+           <i class="fa-solid fa-id-card icon"></i>
+            <div class="dropdown" id="dropdownDocumento">
+                <div class="dropdown-btn" id="dropdownBtn">
+                    <span id="documentoSelecionado">Selecione um documento para identificação:</span>
+                    <span class="seta">▼</span>
+                </div>
+
+                <div class="dropdown-menu">
+                  <div class="dropdown-titulo">Selecione uma opção:</div>
+                    <div class="dropdown-item" data-value="oab">OAB</div>
+                    <div class="dropdown-item" data-value="cnpj">CNPJ</div>
+                    <div class="dropdown-item" data-value="crp">CRP</div>
+                </div>
+                <input type="hidden" name="tipo_documento" id="tipo_documento">
+            </div>
+        </div>
+          <div class="input-group" id="campoNumeroDocumento" style="display:none;">
+              <input type="text" id="numero_documento" name="numero_documento"placeholder="">
+          </div>
+        </div>
+
+
+        <div class="senha-linha">
+          <div class="input-group">
+           <i class="fa fa-lock icon"></i>
+            <input type="password" placeholder="Senha:" name="senha">
+          </div>
+          <div class="input-group">
+             <i class="fa fa-lock icon"></i>
+            <input type="password" placeholder="Repita a senha:" name="senha2">
+          </div>
+        </div>
+
+        <div class="aceite-termos">
+          <input type="checkbox" id="termos" name="termos">
+          <label for="termos"> Li e aceito os termos de parceria</label>
+          <p>Receba apoio, visibilidade e participe de nossa rede de impacto social.</p>
+        </div>
+
+        <br>
+        <button type="submit" class="btn-cadastrar">Cadastrar</button>
+      </form>
+
+      <br>
+      <p class="login-link">Já possui conta? <a href="logAdv.html">Entrar</a></p>
+
+    </div>
+  </div>
+ 
+  <script type="module" src="./js/cadastro-prof-parc.js"></script>
+  <script type="module" src="./js/firebase.js"></script>
+  <script type="module" src="./js/cadastro-adv.js"></script>
+  <script type="module" src="./js/globals.js"></script>
+
+</body>
+
+</html>

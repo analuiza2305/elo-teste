@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+i{
+    color: #583E8E;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+   background: linear-gradient(
+         135deg,
+        #c2b2dfe1 0%,   
+        #c9c1e3e1 45%,
+        #f6f3ff 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.cadastro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    transform: scale(1.1);
+}
+
+.cadastro-box {
+    background-color: #ffffffbc; 
+    box-shadow: 0 10px 24px rgba(87, 62, 142, 0.276); 
+    padding: 35px 40px;
+    border-radius: 16px; 
+    text-align: center;
+    max-width: 550px; 
+    width: 100%;
+     border: 8px solid rgba(229, 220, 255, 0.299);
+}
+ 
+.logo {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.cadastro-box h2 {
+    color: #583E8E;
+    margin-bottom: 8px;
+}
+
+.subtexto {
+    color: #564286;                 
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #6844b0;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 8px 10px;
+}
+
+.input-group .icon {
+    width: 20px;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: transparent;
+}
+
+.campo-documento {
+    width: 100%;
+}
+
+.dropdown-titulo {
+    padding: 10px 15px;
+    background: #f8f6ff;
+    color: #50328c;
+    font-size: 13px;
+    font-weight: 700;
+    border-bottom: 1px solid #e5ddff;
+    cursor: default;
+}
+
+.dropdown-container {
+    width: 100%;
+}
+
+#campoNumeroDocumento {
+    margin-top: 10px;
+}
+
+.dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: #50328ce4;
+    font-weight: 400;
+    width: 100%;
+    min-height: 24px;
+}
+
+.dropdown.active .seta {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 2px solid #e2d9ffeb;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(88, 62, 142, 0.18);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.dropdown.active .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    color: #583E8E;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f8f6ffee;
+}
+
+.dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #e2d9ffeb;
+}
+
+.input-group.pequeno:hover {
+    border-color: #583E8E;
+    box-shadow: 0 0 10px rgba(88, 62, 142, 0.15);
+}
+
+.input-group.pequeno:focus-within {
+    border-color: #583E8E;
+    box-shadow: 0 0 0 3px rgba(88, 62, 142, 0.15);
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 12px;
+    background: #583E8E;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-cadastrar:hover {
+    background: #432e6a;
+}
+
+.login-link {
+    font-family: 'Nunito', sans-serif;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #664F9F;
+}
+
+.login-link a {
+    color: #583E8E;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.senha-linha {
+    display: flex;
+    gap: 10px;
+}
+
+.senha-linha .input-group {
+    flex: 1;
+}
+
+.senha-linha .input-group {
+    margin-bottom: 10px;
+}
+
+.aceite-termos {
+    text-align: left;
+    margin: 8px 0 15px 2px;
+}
+
+.aceite-termos label,
+.aceite-termos p {
+    opacity: 0.53;
+    color: #583E8E; 
+    opacity: 1;   
+    font-size: 12px;
+}
+
+.aceite-termos input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    accent-color: #564286;  
+    cursor: pointer;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.aceite-termos p {
+    color: #593e8ee0; 
+    font-size: 12px;
+}
+
+.password-group {
+    position: relative;
+}
+
+.password-group input {
+    padding-right: 35px;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #564286;  
+}

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EloMaterno - Login</title>
+  <link rel="stylesheet" href="./css/log.css">
+  <link rel="stylesheet" href="./css/globals.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="img/iconelogo.svg">
+  <link rel="alternate icon" type="image/png" href="img/iconelogo.png">
+</head>
+
+<body>
+
+  <div class="login-container">
+    <div class="login-box">
+
+      <a href="formPerfil.html">
+        <img src="./img/logo_icon.png" alt="Logo mãe" class="logo">
+      </a>
+      <h2>Login para parceiros ou profissionais </h2>
+      <p class="subtexto">Juntos podemos transformar vidas!</p>
+
+      <form action="homeadv.html" method="post" class="login-form">
+
+        <div class="input-group">
+           <i class="fa-solid fa-id-card icon"></i>
+          <input type="text" placeholder="Digite o seu documento(OAB/ CRP/ CNPJ):" name="oab">
+        </div>
+
+        <div class="input-group">
+          <i class="fa fa-lock icon"></i>
+          <input type="password" placeholder="Senha:" name="senha">
+        </div>
+
+       <p class="forgot">Esqueceu sua senha? <a href="#" id="forgot-pass"> Clique aqui para recuperá-la!</a></p>
+
+        <button type="submit" class="btn-logar">Fazer login</button>
+      </form>
+      
+      <p class="cad-link">Não possui conta? <a href="cadAdv.html">Registrar-se como parceiro ou profissional</a></p>
+      <p class="cad-link">É uma mãe? <a href="logMae.html">Faça login aqui!</a></p>
+    </div>
+  </div>
+
+  
+  <div id="oab-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h3>Digite seu número da OAB</h3>
+      <p>Para receber o link de redefinição de senha, informe seu número da OAB:</p>
+      <input type="text" id="reset-oab-input" placeholder="Digite a OAB">
+      <div class="modal-buttons">
+        <button id="reset-password-btn">Enviar</button>
+        <button id="cancel-reset-btn">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script type="module" src="./js/firebase.js"></script>
+<script type="module" src="./js/login-adv.js"></script>
+<script type="module" src="./js/globals.js"></script>
+
+</html>

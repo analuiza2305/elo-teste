@@ -1,0 +1,213 @@
+/* =========================================
+   ESTILOS PREMIUM PARA POLÍTICAS - ELOMATERNO
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+    --primary-color: #8471b1;   
+    --primary-dark: #594a7d;    
+    --primary-light: #9b89c8;   
+    --bg-gradient: linear-gradient(135deg, #fdfaff 0%, #e9dfff 100%);     
+    --text-dark: #334155;       
+    --text-muted: #64748b;      
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-dark);
+    line-height: 1.8;
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+/* =========================================
+   CARTÃO PRINCIPAL (EFEITO GLASSMORPHISM)
+========================================= */
+.policy-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.85); /* Fundo semi-transparente */
+    backdrop-filter: blur(16px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px rgba(89, 74, 125, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabeçalho Fixo (Acompanha a rolagem) */
+.policy-header {
+    display: flex;
+    align-items: center;
+    padding: 30px 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(132, 113, 177, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 12px; /* Botão quadradinho moderno */
+    width: 48px;
+    height: 48px;
+    text-decoration: none;
+    margin-right: 24px;
+    transition: var(--transition);
+    border: 1px solid rgba(132, 113, 177, 0.2);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    flex-shrink: 0;
+}
+
+.back-button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateX(-4px);
+}
+
+.back-button img { width: 20px; height: 20px; transition: var(--transition); }
+.back-button:hover img { filter: brightness(0) invert(1); /* Fica branco no hover */ }
+
+.policy-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* =========================================
+   ÁREA DE TEXTOS E LISTAS (MODERNIZADO)
+========================================= */
+.policy-content { padding: 40px; }
+
+.policy-content > p:first-child {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    background-color: rgba(132, 113, 177, 0.1);
+    padding: 8px 16px;
+    border-radius: 50px;
+}
+
+.policy-content h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-top: 50px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Tracinho roxo estiloso antes dos títulos */
+.policy-content h5::before {
+    content: ''; display: block; width: 20px; height: 4px;
+    background: var(--primary-color); border-radius: 4px;
+}
+
+.policy-content p { margin-bottom: 16px; font-size: 1.05rem; }
+
+/* Listas transformadas em cartões */
+.policy-content ul {
+    list-style: none; padding: 0; margin: 20px 0 30px 0;
+}
+
+.policy-content > ul > li {
+    position: relative;
+    padding: 16px 20px 16px 50px;
+    margin-bottom: 12px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid rgba(132, 113, 177, 0.15);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.policy-content > ul > li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(89, 74, 125, 0.1);
+    border-color: var(--primary-light);
+}
+
+/* Ícone de check roxo ao invés de bolinha preta */
+.policy-content > ul > li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 20px;
+    top: 18px;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+/* Sub-listas normais */
+.policy-content ul ul { margin-top: 12px; margin-bottom: 0; }
+.policy-content ul ul li { background: transparent; box-shadow: none; border: none; padding: 8px 0 8px 24px; }
+.policy-content ul ul li:hover { transform: none; box-shadow: none; border: none; }
+.policy-content ul ul li::before { content: '\f111'; font-size: 0.5rem; top: 14px; left: 0; }
+
+.policy-content strong, .policy-content b { color: var(--primary-dark); font-weight: 600; }
+
+/* =========================================
+   MENU FLUTUANTE DE ACESSIBILIDADE
+========================================= */
+.accessibility-floating { position: fixed; top: 20px; right: 20px; z-index: 9999; }
+.accessibility-floating .btn-icon { width: 50px; height: 50px; border-radius: 50%; background-color: var(--white); border: 1px solid rgba(132, 113, 177, 0.2); display: flex; align-items: center; justify-content: center; color: var(--primary-dark); font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(89, 74, 125, 0.15); transition: var(--transition); }
+.accessibility-floating .btn-icon:hover { transform: translateY(-2px); color: var(--primary-color); }
+#accessibility-menu { position: absolute; top: 60px; right: 0; background: var(--white); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); list-style: none; padding: 10px 0; width: 280px; border: 1px solid #eee; }
+#accessibility-menu.hidden { display: none; }
+#accessibility-menu li { padding: 12px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-dark); transition: var(--transition); }
+#accessibility-menu li:hover { background: rgba(132, 113, 177, 0.1); color: var(--primary-color); }
+
+/* Motor de Acessibilidade CSS */
+body.high-contrast-active { --hc-bg: #000000; --hc-text: #ffffff; --hc-accent: #ffff00; --hc-intensity: 100%; background: var(--hc-bg); color: var(--hc-text); filter: contrast(var(--hc-intensity)); }
+body.high-contrast-active .policy-container, body.high-contrast-active .policy-content > ul > li { border: 2px solid var(--hc-text); background: var(--hc-bg); }
+body.high-contrast-active .policy-header { border-bottom: 2px solid var(--hc-text); background: var(--hc-bg); }
+body.high-contrast-active .back-button { border: 2px solid var(--hc-text); background: var(--hc-bg); }
+body.bold-text-active * { font-weight: bold !important; }
+body.line-spacing-sm { line-height: 1.2 !important; }
+body.line-spacing-normal { line-height: 1.8 !important; }
+body.line-spacing-lg { line-height: 2.2 !important; }
+body.colorblind-protanopia { filter: url('#protanopia'); }
+body.colorblind-deuteranopia { filter: url('#deuteranopia'); }
+body.colorblind-tritanopia { filter: url('#tritanopia'); }
+body.colorblind-Acromatopsia { filter: url('#Acromatopsia'); }
+#reading-mask-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 9998; pointer-events: none; }
+.highlight-window { height: 150px; width: 100%; background: transparent; box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6); position: absolute; top: 50%; transform: translateY(-50%); }
+div[vw].enabled { right: 0 !important; left: auto !important; transform: none !important; }
+div[vw] [vw-access-button] { right: 0 !important; margin-right: 0 !important; transform: none !important; border-radius: 12px 0 0 12px !important; }
+div[vw] [vw-plugin-wrapper] { right: 0 !important; }
+
+/* Responsividade Celular */
+@media (max-width: 768px) {
+    body { padding: 90px 15px 30px 15px; } /* Dá espaço para o menu flutuante */
+    .policy-header { padding: 24px; flex-direction: row; gap: 15px; }
+    .back-button { margin: 0; width: 40px; height: 40px; }
+    .policy-title { font-size: 1.5rem; }
+    .policy-content { padding: 30px 24px; }
+    .policy-content > ul > li { padding: 12px 16px 12px 40px; }
+    .policy-content > ul > li::before { left: 16px; top: 14px; }
+} 

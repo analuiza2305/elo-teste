@@ -1,0 +1,92 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+ 
+ 
+ public class Chat {
+    
+    int idchat;
+    String mensagem;
+
+    int IdPsicologo;
+    int IdMae;
+    int IdAdvogado; 
+
+}
+
+
+Arquivo: Paciente.java
+
+ public class Artigos {
+
+    int IdMae;
+    LocalDate ultimacosuta;
+
+    int idchat;
+    
+    
+}
+
+Arquivo: Artigo.java
+
+ public class Artigo {
+
+    int IdArtigos;
+    String Titulo;
+    String Descricao;
+    String Resumo;
+    String Imagem;
+    String Link;
+    String Categoria;
+
+    int IdEmpresa;
+    
+    
+}
+
+
+Arquivo: Main.java
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class Main { 
+
+     public static void main(String[] args){
+
+         Chat ch1 = new Chat();
+
+        ch1.idchat = 1; 
+        ch1.mensagem = "Olá Mundo"
+        
+
+        ch1.IdPsicologo = 1;
+        ch1.IdMae = 1;
+        ch1.IdAdvogado = 1;
+
+         Paciente Pa1 = new Paciente();
+
+        pa1.IdMae = 1;
+        pa1.ultimacosuta = LocalDate.of (2026, 02, 02);
+        pa1.idchat = 1;
+        
+
+          Artigo Ar1 = new Artigo ();
+        
+        Ar1.IdArtigos = 1;
+        Ar1.Titulo = "Mãe no controle"
+        Ar1.Descricao = "Como manter o controle emocional";
+        Ar1.Resumo = "Sempre manter a calma";
+        Ar1.Imagem = 1;
+        Ar1.Link = "www.maenocontrole.com.br";
+        Ar1.Categoria = "Educação";
+        
+
+        System.out.println(ch1.idchat + " - " + ch1.mensagem + " - " + ch1.IdPsicologo + " - " + ch1.IdMae + " - " + ch1.IdAdvogado + " - " ); 
+        System.out.println(pa1.IdMae + " - " + pa1.ultimacosuta + " - " + pa1.idchat + " - ");
+        System.out.println(Ar1.IdArtigos + " - " + Ar1.Titulo + " - " + Ar1.Descricao + " - " + Ar1.Resumo + " - " + Ar1.Imagem + " - " + Ar1.Link + " - " + Ar1.Categoria + " - ");
+
+     }
+}
+
+

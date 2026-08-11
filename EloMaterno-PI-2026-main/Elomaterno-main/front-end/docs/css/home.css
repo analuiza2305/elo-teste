@@ -1,0 +1,1358 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+}
+
+/* =========================================
+   TOKENS DE REFINAMENTO
+   (mesma paleta e mesma fonte — só consistência
+   de raio, sombra e transição em um só lugar)
+========================================= */
+:root {
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-xl: 28px;
+    --shadow-soft: 0 4px 16px rgba(88, 62, 142, 0.08);
+    --shadow-medium: 0 8px 24px rgba(88, 62, 142, 0.12);
+    --shadow-hover: 0 14px 32px rgba(88, 62, 142, 0.18);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-sections {
+    max-width: 1200px;
+    margin: 28px auto 64px auto;
+    padding: 0 16px;
+}
+
+.section {
+    margin-top: 40px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.section-header h3 {
+    color: var(--primary-color-dark);
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.ver-mais {
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.25s var(--ease), opacity 0.2s ease;
+}
+
+.ver-mais::after {
+    content: "→";
+    transition: transform 0.25s var(--ease);
+}
+
+.ver-mais:hover {
+    opacity: 0.75;
+    gap: 7px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* =========================================
+   REORGANIZAÇÃO DOS CARDS (Flexbox)
+========================================= */
+
+/* Estrutura base do card - Ocupa 100% da altura e distribui os itens */
+.mini-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: 24px; /* Mais respiro interno */
+    border: 1px solid rgba(108, 75, 191, 0.12);
+    box-shadow: 0 4px 14px rgba(88, 62, 142, 0.06);
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    box-sizing: border-box;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito da barra colorida no topo (mantido) */
+.mini-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+}
+
+.mini-card:hover::after { opacity: 1; }
+.mini-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(88, 62, 142, 0.12);
+    border-color: rgba(108, 75, 191, 0.25);
+}
+
+/* -----------------------------------------
+   1. ORGANIZAÇÃO: FÓRUM
+----------------------------------------- */
+/* Jogamos o título e o texto para cima, e o autor para baixo */
+.mini-card .mini-title {
+    order: 1; /* Aparece primeiro */
+    margin: 0 0 10px 0;
+    font-size: 17px;
+}
+
+.mini-card .mini-text {
+    order: 2; /* Aparece em segundo */
+    margin: 0 0 20px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1; /* Empurra o que vier depois para o fundo do card */
+}
+
+.mini-card .mini-header {
+    order: 3; /* Aparece por último (no rodapé do card) */
+    margin-bottom: 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color); /* Linha sutil separando o autor */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* -----------------------------------------
+   2. ORGANIZAÇÃO: ARTIGOS
+----------------------------------------- */
+/* A imagem gruda nas bordas superiores do card */
+.artigo-card {
+    padding: 0; /* Removemos o padding geral do card para a imagem encostar na borda */
+}
+
+.artigo-card .mini-cover {
+    order: 1;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0; /* Arredonda só em cima */
+    margin-bottom: 0;
+}
+
+.artigo-card .mini-title {
+    order: 2;
+    padding: 20px 24px 10px 24px;
+    margin: 0;
+    flex-grow: 1; /* Ocupa o espaço vazio */
+}
+
+.artigo-card .mini-link {
+    order: 3;
+    padding: 0 24px 24px 24px;
+    display: inline-block;
+    color: var(--secondary-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+/* -----------------------------------------
+   3. ORGANIZAÇÃO: EVENTOS
+----------------------------------------- */
+.event-mini {
+    justify-content: space-between;
+}
+
+.event-mini .event-body {
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.event-mini .botao-acao {
+    width: 100%; /* Botão ocupa a largura total na base do card */
+    box-sizing: border-box;
+    margin-top: auto; /* Empurra o botão pro rodapé */
+}
+
+.mini-link {
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 12px;
+    transition: opacity 0.2s ease;
+}
+
+.mini-link:hover {
+    opacity: 0.75;
+}
+
+
+
+.mini-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+}
+
+.mini-date {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-accent);
+}
+
+
+
+.mini-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.event-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.event-mini {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-mini .botao-acao {
+    margin-top: 10px;
+}
+
+.artigo-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.artigo-card .mini-title {
+    padding: 14px 16px 0 16px;
+}
+
+.artigo-card .mini-link {
+    padding: 0 16px 16px 16px;
+    display: inline-block;
+}
+
+/* Container Principal do Hero */
+.hero-section-nova {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #EFEBF9 0%, #E2DDF5 100%);
+    border-radius: var(--radius-xl);
+    padding: 48px 56px;
+    margin-bottom: 40px;
+    gap: 40px;
+    box-shadow: var(--shadow-soft);
+    /* Sem transições ou efeitos de hover de tamanho */
+}
+
+/* Coluna da Esquerda */
+.hero-conteudo {
+    flex: 1;
+    max-width: 55%;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(124, 105, 169, 0.14);
+    color: #55447A;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 26px;
+    transition: background-color 0.2s ease;
+}
+
+.hero-titulo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 42px;
+    color: #433366;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    margin: 0 0 18px 0;
+    font-weight: 800; /* ExtraBold em vez de Black: mesma presença, leitura mais premium */
+}
+
+.hero-titulo .destaque {
+    color: var(--primary-color); /* #7c69a9 — mesma cor de antes */
+}
+
+.hero-subtitulo {
+    font-size: 16px;
+    color: #72638F;
+    line-height: 1.6;
+    margin: 0 0 32px 0;
+}
+
+/* Botões do Hero */
+.hero-botoes {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.botao-roxo, .botao-branco {
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 50px; /* Bordas bem arredondadas */
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), opacity 0.2s ease;
+}
+
+.botao-roxo {
+    background-color: #52427D !important;
+    color: #FFFFFF !important; /* Blinda o texto para ficar sempre branco */
+}
+
+/* Adicione esta nova regrinha logo abaixo para blindar a setinha */
+.botao-roxo i {
+    color: #FFFFFF !important; 
+}
+.botao-roxo:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.botao-branco {
+    background-color: #FFFFFF;
+    color: #52427D;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.botao-branco:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Coluna da Direita (Imagem) */
+.hero-imagem-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-img-ilustracao {
+    width: 100%;
+    max-width: 500px;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(88, 62, 142, 0.14);
+}
+
+/* Card Flutuante (+2.4k mães online) */
+.card-flutuante {
+    position: absolute;
+    bottom: -15px; /* Faz o card "vazar" um pouco pra fora da imagem */
+    left: -20px;
+    background: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow-hover);
+}
+
+.card-icone {
+    background-color: #7E6EB3;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.card-texto {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-label {
+    font-size: 11px;
+    color: #9285AB;
+}
+
+.card-valor {
+    font-size: 13px;
+    font-weight: 800;
+    color: #433366;
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+    .hero-section-nova {
+        flex-direction: column;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .hero-conteudo {
+        max-width: 100%;
+    }
+
+    .hero-badge {
+        margin: 0 auto 20px auto;
+    }
+
+    .hero-titulo {
+        font-size: 32px;
+    }
+
+    .hero-botoes {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .botao-roxo, .botao-branco {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-imagem-container {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .card-flutuante {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -20px;
+        width: max-content;
+    }
+}
+
+/* =========================================
+   MENU RÁPIDO (Abaixo do Hero)
+========================================= */
+
+.quick-menu-section {
+    max-width: 1200px;
+    margin: 0 auto 40px auto; /* Mantém o espaçamento em relação às outras seções */
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.quick-menu-container {
+    background-color: #FFFFFF;
+    border: 1px solid #EAE5F5; /* Borda bem clarinha */
+    box-shadow: var(--shadow-soft); /* Sombra suave para dar destaque */
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px; /* Espaço interno da barra branca */
+}
+
+/* Estilo individual de cada botão/link */
+.quick-menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #52427D;
+    padding: 18px 14px;
+    border-radius: var(--radius-md); /* Arredondamento que vai aparecer no Hover */
+    flex: 1; /* Faz todos ocuparem o mesmo espaço de largura */
+    transition: background-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+/* Ícones */
+.quick-menu-item i {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #6C5CA4;
+    transition: color 0.25s var(--ease);
+}
+
+/* Textos */
+.quick-menu-item span {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* EFEITO DE PASSAR O MOUSE (HOVER) */
+.quick-menu-item:hover {
+    background-color: #F4F0FC; 
+    color: #3C2E60;
+    transform: translateY(-2px);
+}
+
+.quick-menu-item:hover i {
+    color: #3C2E60; /* Escurece o ícone também para dar contraste no fundo */
+}
+
+
+/* =========================================
+   RESPONSIVIDADE DO MENU RÁPIDO
+========================================= */
+
+/* Tablets (até 992px) */
+@media (max-width: 992px) {
+    .quick-menu-item span {
+        font-size: 12px;
+    }
+    .quick-menu-item i {
+        font-size: 20px;
+    }
+}
+
+/* Celulares (até 768px) */
+@media (max-width: 768px) {
+    .quick-menu-container {
+        flex-wrap: wrap; /* Permite que os ícones caiam para a linha de baixo */
+        gap: 8px;
+        padding: 16px;
+    }
+    
+    .quick-menu-item {
+        flex: 1 1 30%; /* Força a ficar 3 itens na primeira linha e 2 na segunda */
+        padding: 12px 8px;
+    }
+}
+/* =========================================
+   NOVO DESIGN: CARD DO FÓRUM (Baseado na Referência)
+========================================= */
+
+.forum-card-novo {
+    background: var(--card-bg);
+    border: 1px solid rgba(108, 75, 191, 0.15); /* Borda bem sutil como na imagem */
+    border-radius: var(--radius-lg); /* Cantos bem arredondados */
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-decoration: none;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    box-shadow: 0 4px 14px rgba(88, 62, 142, 0.04);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.forum-card-novo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(88, 62, 142, 0.1);
+    border-color: rgba(108, 75, 191, 0.3);
+}
+
+/* Header: Avatar, Nome e Tempo */
+.fc-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fc-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.fc-user-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.fc-nome {
+    color: var(--primary-color-darker);
+    font-weight: 700;
+}
+
+.fc-dot {
+    color: #A098B5; /* Correntinha cinza para o ponto */
+}
+
+.fc-data {
+    color: #8C82A2;
+}
+
+/* Body: Título e Texto */
+.fc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1; /* Empurra o footer para o final */
+}
+
+.fc-titulo {
+    margin: 0;
+    color: var(--primary-color-darker);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.fc-texto {
+    margin: 0;
+    color: var(--text-color-light);
+    font-size: 14px;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Footer: Curtidas e Status */
+.fc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Um pra esquerda, outro pra direita */
+    border-top: 1px solid rgba(108, 75, 191, 0.1); /* Linha divisória sutil */
+    padding-top: 16px;
+    margin-top: auto;
+}
+
+.fc-like {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #8C82A2;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.forum-card-novo:hover .fc-like {
+    color: var(--secondary-color);
+}
+
+/* Badges de Status (O charme da profissional) */
+.badge-respondido,
+.badge-aguardando {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-respondido {
+    background-color: #E8F5E9; /* Fundo verdinho claro de sucesso */
+    color: #2E7D32; /* Texto verde escuro */
+}
+
+.badge-aguardando {
+    background-color: var(--muted-bg); /* Roxinho claro do seu tema */
+    color: var(--accent-color);
+}
+/* =========================================
+   ESTILO DO BOTÃO DE CURTIR ATIVO
+========================================= */
+.fc-like.liked {
+    color: #e63946 !important; /* Vermelho vivo */
+}
+
+.fc-like.liked i {
+    color: #e63946;
+}
+
+/* Garante que o coração continue vermelho mesmo quando passar o mouse no card */
+.forum-card-novo:hover .fc-like.liked {
+    color: #e63946;
+}
+
+/* =========================================
+   NOVO DESIGN: CARROSSEL DE ARTIGOS
+========================================= */
+
+/* Transforma o container em um carrossel deslizante */
+#artigos-home {
+    display: flex !important; /* Sobrescreve o grid padrão */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+    padding-bottom: 20px; /* Espaço para a sombra não cortar */
+    scroll-snap-type: x mandatory; /* Suaviza a parada ao deslizar no celular */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Esconde a barra de rolagem para ficar limpo como um app */
+#artigos-home::-webkit-scrollbar {
+    display: none;
+}
+#artigos-home {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Estrutura do Novo Card de Artigo */
+.artigo-card-novo {
+    flex: 0 0 280px; /* Largura fixa do card no carrossel */
+    scroll-snap-align: start; /* Para o scroll exatamente no início do card */
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(108, 75, 191, 0.12);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(88, 62, 142, 0.04);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.artigo-card-novo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(88, 62, 142, 0.12);
+}
+
+/* Área da Imagem, Tag e Favorito */
+.ac-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 160px;
+}
+
+.ac-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ac-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-color-darker);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ac-bookmark {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-color-darker);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.artigo-card-novo:hover .ac-bookmark {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* Corpo de Texto */
+.ac-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.ac-time {
+    font-size: 12px;
+    color: var(--text-color-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.ac-title {
+    margin: 0 0 8px 0;
+    color: var(--primary-color-darker);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.ac-excerpt {
+    margin: 0 0 20px 0;
+    color: var(--text-color-light);
+    font-size: 13px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita o resumo a 2 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Rodapé com linha divisória */
+.ac-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(108, 75, 191, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ac-author {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-color-light);
+}
+
+.ac-ler {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s ease;
+}
+
+.artigo-card-novo:hover .ac-ler {
+    gap: 10px; /* A setinha dá um pulinho pro lado no hover */
+}
+
+/* Ajuste de largura em telas maiores */
+@media (min-width: 768px) {
+    .artigo-card-novo {
+        flex: 0 0 320px;
+    }
+}
+/* =========================================
+   NOVO DESIGN: EVENTOS ESTILO INGRESSO HORIZONTAL
+========================================= */
+.eventos-grid-horizontal {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+}
+
+.ticket-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(108, 75, 191, 0.12);
+    border-radius: var(--radius-md); /* Bordas um pouco mais fechadas */
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    gap: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(88, 62, 142, 0.04);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.ticket-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(88, 62, 142, 0.1);
+    border-color: var(--secondary-color);
+}
+
+/* Quadrado da imagem na esquerda */
+.tc-img-box {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.tc-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Conteúdo central */
+.tc-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tc-date {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tc-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--primary-color-darker);
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tc-local {
+    font-size: 12px;
+    color: var(--text-color-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Container dos botões do card de evento */
+.tc-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilo do botão "Mais informações" */
+.tc-btn {
+    background-color: var(--muted-bg);
+    color: var(--primary-color-dark);
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.25s var(--ease), transform 0.25s var(--ease);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tc-btn:hover {
+    background-color: #E2DDF5;
+    transform: translateY(-2px);
+}
+
+/* Estilo do botão quando a mãe já está inscrita (Verdinho) */
+.tc-btn.inscrito {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.tc-btn.inscrito:hover {
+    background-color: #C8E6C9;
+}
+
+.ticket-card:hover .tc-arrow {
+    color: var(--primary-color);
+    transform: translateX(4px); /* Pulinho animado para a direita */
+}
+
+/* Responsividade (Para celulares) */
+@media (max-width: 768px) {
+    .eventos-grid-horizontal {
+        grid-template-columns: 1fr; /* Volta para 1 abaixo do outro no celular */
+    }
+}   
+
+.hero-cta {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+}
+
+.hero-section:hover {
+    transform: scaleX(1.02);
+    height: 400px;
+}
+
+.hero-section:hover .hero-img {
+    object-fit: cover;
+}
+
+.conteudo-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.secao-titulo {
+    max-width: 1200px;
+    margin: 20px auto 10px auto;
+    padding: 0 16px;
+    color: var(--primary-color-dark);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+
+.com-brilho {
+    box-shadow: 0 0 0 1px rgba(88, 62, 142, 0.10), 0 6px 18px rgba(88, 62, 142, 0.18);
+}
+
+.borda-roxa {
+    border: 2px solid var(--secondary-color);
+}
+
+.grad-roxo {
+    background: linear-gradient(135deg, var(--muted-bg) 0%, var(--muted-bg) 50%, var(--muted-bg) 100%);
+}
+
+
+.botao-acao,
+.botao-acao.pequeno {
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    text-align: center;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    display: inline-block;
+}
+
+.botao-acao.pequeno {
+    padding: 7px 10px;
+    font-size: 15px;
+    width: 94%;
+}
+
+.botao-acao:hover,
+.botao-acao.pequeno:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+
+
+.animar-entrada {
+    opacity: 0;
+    animation: fadeSlideLeft 0.5s ease-out forwards;
+}
+
+@keyframes fadeSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.coment-preview {
+    max-width: 1200px;
+    margin: 20px auto 50px auto;
+    padding: 0 16px;
+}
+
+.coment-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+
+.post-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+}
+
+.post-info h4 {
+    margin: 0;
+    color: var(--primary-color-dark);
+    font-size: 14px;
+}
+
+.post-date {
+    display: block;
+    font-size: 11px;
+    color: var(--muted-accent);
+}
+
+.menu-btn {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--primary-color-dark);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 12px 0 6px 0;
+    color: var(--primary-color-darker);
+}
+
+.post-content {
+    margin: 0 0 14px 0;
+    color: var(--text-color-light);
+    line-height: 1.6;
+}
+
+.post-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.like-count {
+    color: var(--primary-color-dark);
+    font-weight: 700;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 92px;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-section {
+        height: 180px;
+    }
+
+    .hero-section:hover {
+        height: 240px;
+    }
+
+    .conteudo-home {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin: 20px auto;
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .card-destaque {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        aspect-ratio: 16/10;
+    }
+
+    .card-destaque img {
+        object-fit: cover;
+        height: 100%;
+    }
+
+    .card-oportunidade {
+        flex-direction: column;
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        padding: 0;
+    }
+
+    .card-oportunidade .imagem {
+        width: 100%;
+        height: 160px;
+    }
+
+    .card-oportunidade .texto {
+        width: 100%;
+        padding: 12px;
+        text-align: left;
+    }
+
+    .card-oportunidade h3 {
+        font-size: 16px;
+    }
+
+    .card-oportunidade p {
+        font-size: 14px;
+    }
+
+    .depoimentos {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .depoimento {
+        max-width: 420px;
+        width: 100%;
+    }
+}
+
+.mini-card,
+.post-card,
+.consult-mini {
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    cursor: pointer;
+}
+
+.mini-card:hover,
+.post-card:hover,
+.consult-mini:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 28px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    color: var(--text-color);
+    animation: popupFade 0.3s ease; /* mesma keyframe já usada no popup de pesquisa */
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    color: var(--text-color-light);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close:hover {
+    color: var(--text-color);
+    transform: scale(1.1);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-color-darker);
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    margin-bottom: 18px;
+    color: var(--text-color-light);
+    line-height: 1.55;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-form label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+#profile-form input {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#profile-form input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(108, 75, 191, 0.15);
+}
+
+#profile-form button {
+    margin-top: 22px;
+    padding: 13px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+#profile-form button:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+

@@ -5,65 +5,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EloMaterno - Painel Administrativo</title>
+  <link rel="stylesheet" href="./css/globals.css">
   <link rel="stylesheet" href="./css/adminDashboard.css">
   <link rel="icon" type="image/svg+xml" href="img/iconelogo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body>
+<body class="admin-page">
+
   <header class="header">
-    <h1>Painel Administrativo - EloMaterno</h1>
-    <img src="./img/logo_icon.png" alt="Foto do administrador" class="profile-img">
+    <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="adminSidebar">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+
+    <div class="header-left">
+      <a href="admin-dashboard.html" class="header-logo-link">
+        <img src="./img/logo_icon.png" alt="Ícone Elo Materno" class="header-logo-icon">
+        <span class="header-logo-text">elomaterno</span>
+        <span class="area-badge">Admin</span>
+      </a>
+    </div>
+
+    <div class="header-icons">
+      <button class="icon-btn" id="theme-toggle" title="Alternar tema">
+        <i class="fas fa-moon" id="theme-toggle-icon" aria-hidden="true"></i>
+        <span class="sr-only">Alternar tema claro e escuro</span>
+      </button>
+      <button class="icon-btn" id="logoutBtn" title="Sair" aria-label="Sair da conta">
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+      </button>
+      <img id="headerAvatar" class="header-avatar" src="./img/logo_icon.png" alt="Foto do administrador">
+    </div>
   </header>
 
+  <div id="sidebar-overlay" class="hidden" aria-hidden="true"></div>
+
   <main class="main-container">
-    <aside class="sidebar">
+    <aside class="sidebar" id="adminSidebar">
+      <div class="sidebar-group-label">Gerenciar</div>
       <button class="menu-btn active" data-target="dashboard">
-        <img src="./img/painel_icon.png" alt="ícone painel">
+        <i class="fa-solid fa-chart-line"></i>
         <span>Painel Geral</span>
       </button>
-
       <button class="menu-btn" data-target="usuarios">
-        <img src="./img/pacientes_icon.png" alt="ícone usuários">
+        <i class="fa-solid fa-users"></i>
         <span>Usuários</span>
       </button>
-
       <button class="menu-btn" data-target="autorizacoes">
-        <img src="./img/count_icon.png" alt="ícone autorizações">
+        <i class="fa-solid fa-user-check"></i>
         <span>Autorizações</span>
       </button>
-
-      
     </aside>
 
     <section class="content" id="dashboard">
-      <h2>Visão Geral do Sistema</h2>
-     <div class="stats-grid">
-    <div class="stat-card"><span id="psicoCount">0</span><p>Psicólogos Ativos</p></div>
-    <div class="stat-card"><span id="advCount">0</span><p>Advogados Ativos</p></div>
-  </div>
+      <div class="admin-hero">
+        <span class="hero-badge">ÁREA ADMINISTRATIVA</span>
+        <h1>Visão Geral do Sistema</h1>
+        <p>Acompanhe em tempo real os profissionais ativos na plataforma e a distribuição de usuários do EloMaterno.</p>
+      </div>
 
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple"><i class="fa-solid fa-brain"></i></div>
+          <div class="stat-info">
+            <span class="stat-number" id="psicoCount">0</span>
+            <span class="stat-label">Psicólogos Ativos</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-blue"><i class="fa-solid fa-scale-balanced"></i></div>
+          <div class="stat-info">
+            <span class="stat-number" id="advCount">0</span>
+            <span class="stat-label">Advogados Ativos</span>
+          </div>
+        </div>
+      </div>
 
-      <br>
-      <div style="display:flex; gap:20px; width:100%; justify-content:center; flex-wrap:wrap;">
-
-        <div class="chart-card" style="flex:1; min-width:380px; max-width:500px;">
+      <div class="dashboard-columns">
+        <div class="dash-panel chart-card">
           <h3>Uso por Categoria</h3>
           <canvas id="usageChart"></canvas>
         </div>
 
-        <div class="chart-card" style="flex:1; min-width:380px; max-width:500px;">
+        <div class="dash-panel chart-card">
           <h3>Distribuição de Usuários</h3>
           <canvas id="pieChart"></canvas>
         </div>
-
       </div>
-
     </section>
 
     <section class="content hidden" id="usuarios">
-      <h2>Usuários do Sistema</h2>
-      <br>
-      <div class="user-table">
+      <h2 class="page-title">Usuários do Sistema</h2>
+      <p class="page-subtitle">Consulte e gerencie mães, psicólogos e advogados cadastrados na plataforma.</p>
+
+      <div class="dash-panel user-table">
         <table>
           <thead>
             <tr>
@@ -75,26 +110,76 @@
             </tr>
           </thead>
           <tbody>
-            
+
           </tbody>
         </table>
       </div>
     </section>
 
     <section class="content hidden" id="autorizacoes">
-      <h2>Solicitações de Profissionais</h2>
+      <h2 class="page-title">Solicitações de Profissionais</h2>
+      <p class="page-subtitle">Analise e aprove os cadastros pendentes de psicólogos e advogados.</p>
+
       <div class="request-list">
-        
+
       </div>
     </section>
   </main>
 
-  
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  
+
   <script type="module" src="./js/adminDashboard.js"></script>
   <script type="module" src="./js/globals.js"></script>
+
+  <script>
+    // ===== Toggle do sidebar + overlay (mobile/tablet) =====
+    (function () {
+      const menuBtn = document.getElementById("menu-toggle");
+      const sidebar = document.getElementById("adminSidebar");
+      const overlay = document.getElementById("sidebar-overlay");
+
+      if (!menuBtn || !sidebar || !overlay) return;
+
+      function openSidebar() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        overlay.classList.remove("hidden");
+        menuBtn.setAttribute("aria-expanded", "true");
+        document.documentElement.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        overlay.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+        document.documentElement.style.overflow = "";
+      }
+
+      menuBtn.addEventListener("click", () => {
+        if (sidebar.classList.contains("active")) closeSidebar();
+        else openSidebar();
+      });
+
+      overlay.addEventListener("click", closeSidebar);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" || e.key === "Esc") closeSidebar();
+      });
+
+      sidebar.querySelectorAll(".menu-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (window.innerWidth <= 768) closeSidebar();
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) closeSidebar();
+      });
+    })();
+  </script>
 
 </body>
 
